@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "AI-powered AR fashion try-on platform with virtual personal shopper",
   "main": "index.js",
+  "homepage": "https://your-username.github.io/vibethrive",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -10,7 +11,8 @@
     "test": "vitest",
     "test:ui": "vitest --ui",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "type-check": "tsc --noEmit"
+    "type-check": "tsc --noEmit",
+    "deploy": "npm run build && gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -59,7 +61,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "^14.4.3",
-    "jsdom": "^22.1.0"
+    "jsdom": "^22.1.0",
+    "gh-pages": "^6.1.0"
   },
   "keywords": [
     "ar",
@@ -71,5 +74,13 @@
     "typescript"
   ],
   "author": "VibeThrive Team",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/vibethrive.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/vibethrive/issues"
+  },
+  "homepage": "https://your-username.github.io/vibethrive"
 }
