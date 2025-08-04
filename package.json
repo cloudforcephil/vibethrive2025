@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "AI-powered AR fashion try-on platform with virtual personal shopper",
   "main": "index.js",
-  "homepage": "https://cloudforcephil.github.io/vibethrive",
+  "homepage": "https://cloudforcephil.github.io/vibethrive2025",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -77,9 +77,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/cloudforcephil/vibethrive.git"
+    "url": "https://github.com/cloudforcephil/vibethrive2025.git"
   },
   "bugs": {
-    "url": "https://github.com/cloudforcephil/vibethrive/issues"
+    "url": "https://github.com/cloudforcephil/vibethrive2025/issues"
   }
 }
