@@ -9,6 +9,9 @@ export default function Hat3DModel() {
   const meshRef = useRef<Mesh>(null);
   const { arState } = useStore((state) => state.fittingRoom);
   const { hatPosition, hatRotation, hatScale, selectedColor } = arState;
+  
+  // Default position relative to avatar head
+  const defaultPosition = { x: 0, y: 1.85, z: 0 };
 
   useFrame(() => {
     if (meshRef.current) {
@@ -20,35 +23,41 @@ export default function Hat3DModel() {
   return (
     <mesh
       ref={meshRef}
-      position={[hatPosition.x, hatPosition.y, hatPosition.z]}
+      position={[
+        defaultPosition.x + hatPosition.x, 
+        defaultPosition.y + hatPosition.y, 
+        defaultPosition.z + hatPosition.z
+      ]}
       rotation={[hatRotation.x, hatRotation.y, hatRotation.z]}
       scale={[hatScale.x, hatScale.y, hatScale.z]}
     >
-      {/* Hat brim */}
-      <cylinderGeometry args={[0.8, 0.8, 0.05, 32]} />
+      {/* Bucket hat brim */}
+      <cylinderGeometry args={[0.85, 0.85, 0.03, 32]} />
       <meshStandardMaterial 
-        color={selectedColor?.hex || '#000000'} 
-        roughness={0.3}
-        metalness={0.1}
+        color={selectedColor?.hex || '#E67E22'} 
+        roughness={0.6}
+        metalness={0.0}
       />
       
-      {/* Hat crown */}
-      <mesh position={[0, 0.3, 0]}>
-        <cylinderGeometry args={[0.6, 0.8, 0.4, 32]} />
+      {/* Bucket hat crown */}
+      <mesh position={[0, 0.25, 0]}>
+        <cylinderGeometry args={[0.65, 0.7, 0.35, 32]} />
         <meshStandardMaterial 
-          color={selectedColor?.hex || '#000000'} 
-          roughness={0.3}
-          metalness={0.1}
+          color={selectedColor?.hex || '#E67E22'} 
+          roughness={0.6}
+          metalness={0.0}
         />
       </mesh>
       
-      {/* Hat band */}
-      <mesh position={[0, 0.15, 0]}>
-        <cylinderGeometry args={[0.65, 0.65, 0.05, 32]} />
+      {/* Embroidered text area (simulated) */}
+      <mesh position={[0, 0.1, 0.71]}>
+        <planeGeometry args={[0.3, 0.08]} />
         <meshStandardMaterial 
-          color="#8B4513" 
-          roughness={0.2}
-          metalness={0.3}
+          color="#FFFFFF" 
+          roughness={0.8}
+          metalness={0.0}
+          transparent={true}
+          opacity={0.9}
         />
       </mesh>
     </mesh>

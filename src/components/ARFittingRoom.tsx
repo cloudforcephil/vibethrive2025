@@ -34,12 +34,14 @@ export default function ARFittingRoom() {
               </button>
               <div>
                 <h2 className="text-white font-semibold">{currentProduct.name}</h2>
-                <p className="text-gray-300 text-sm">AR Try-On Experience</p>
+                <p className="text-gray-300 text-sm">
+                  {arState?.avatarModel ? 'Avatar AR Try-On' : 'AR Try-On Experience'}
+                </p>
               </div>
             </div>
             
             <div className="flex items-center gap-2">
-              {!arState.isActive && (
+              {!arState?.isActive && (
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
@@ -64,11 +66,11 @@ export default function ARFittingRoom() {
         {/* AR Scene */}
         <div className="h-full pt-16">
           <ARScene />
-          {arState.isActive && <ARControls />}
+          {arState?.isActive && <ARControls />}
         </div>
 
         {/* Product Info Overlay */}
-        {!arState.isActive && (
+        {!arState?.isActive && (
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -95,6 +97,14 @@ export default function ARFittingRoom() {
               <p className="text-gray-300 text-sm leading-relaxed">
                 {currentProduct.description}
               </p>
+              
+              {!arState?.avatarModel && (
+                <div className="mt-4 p-3 bg-blue-600/20 border border-blue-600/30 rounded-lg">
+                  <p className="text-blue-300 text-sm">
+                    💡 <strong>Enhanced Experience:</strong> Create a realistic avatar with Avaturn for the ultimate virtual try-on!
+                  </p>
+                </div>
+              )}
             </div>
           </motion.div>
         )}

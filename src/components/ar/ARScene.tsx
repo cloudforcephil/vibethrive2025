@@ -6,6 +6,7 @@ import { Suspense } from 'react';
 import { useStore } from '@/store';
 import { motion } from 'framer-motion';
 import Hat3DModel from './Hat3DModel';
+import Avatar3DModel from './Avatar3DModel';
 
 export default function ARScene() {
   const { arState, currentProduct } = useStore((state) => state.fittingRoom);
@@ -40,19 +41,26 @@ export default function ARScene() {
       >
         <Suspense fallback={null}>
           <Environment preset="studio" />
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <pointLight position={[-10, -10, -5]} intensity={0.5} />
+          <ambientLight intensity={0.6} />
+          <directionalLight position={[10, 10, 5]} intensity={1.2} />
+          <pointLight position={[-10, -10, -5]} intensity={0.7} />
+          <pointLight position={[5, 0, 5]} intensity={0.5} color="#ffffff" />
           
+          {/* Avatar Model */}
+          <Avatar3DModel />
+          
+          {/* Hat Model - positioned relative to avatar's head */}
           <Hat3DModel />
           
           <OrbitControls
             enablePan={true}
             enableZoom={true}
             enableRotate={true}
-            minDistance={1}
-            maxDistance={10}
-            target={[0, 1, 0]}
+            minDistance={1.5}
+            maxDistance={8}
+            target={[0, 1.2, 0]}
+            maxPolarAngle={Math.PI / 1.8}
+            minPolarAngle={Math.PI / 6}
           />
         </Suspense>
       </Canvas>
