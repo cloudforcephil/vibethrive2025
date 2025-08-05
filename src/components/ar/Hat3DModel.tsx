@@ -34,7 +34,7 @@ export default function Hat3DModel() {
       {/* Bucket hat brim */}
       <cylinderGeometry args={[0.85, 0.85, 0.03, 32]} />
       <meshStandardMaterial 
-        color={selectedColor?.hex || '#E67E22'} 
+        color={selectedColor?.hex || '#DC2626'} 
         roughness={0.6}
         metalness={0.0}
       />
@@ -43,7 +43,7 @@ export default function Hat3DModel() {
       <mesh position={[0, 0.25, 0]}>
         <cylinderGeometry args={[0.65, 0.7, 0.35, 32]} />
         <meshStandardMaterial 
-          color={selectedColor?.hex || '#E67E22'} 
+          color={selectedColor?.hex || '#DC2626'} 
           roughness={0.6}
           metalness={0.0}
         />
