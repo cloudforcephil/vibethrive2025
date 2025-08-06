@@ -12,7 +12,12 @@ export default function VirtualFittingRoom() {
     if (roomRef.current) {
       const time = state.clock.elapsedTime;
       // Subtle breathing effect for ambient lighting
-      roomRef.current.material.opacity = 0.8 + Math.sin(time * 0.5) * 0.05;
+      const material = Array.isArray(roomRef.current.material) 
+        ? roomRef.current.material[0] 
+        : roomRef.current.material;
+      if (material && 'opacity' in material) {
+        material.opacity = 0.8 + Math.sin(time * 0.5) * 0.05;
+      }
     }
   });
 
