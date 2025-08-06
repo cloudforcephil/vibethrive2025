@@ -12,6 +12,19 @@ interface ProductGalleryProps {
 export default function ProductGallery({ product }: ProductGalleryProps) {
   const [selectedImage, setSelectedImage] = useState(0);
   const [isZoomed, setIsZoomed] = useState(false);
+  const [imageErrors, setImageErrors] = useState<{ [key: number]: boolean }>({});
+
+  const handleImageError = (index: number) => {
+    setImageErrors(prev => ({ ...prev, [index]: true }));
+  };
+
+  const getImageSrc = (index: number) => {
+    if (imageErrors[index]) {
+      // Fallback to local placeholder image
+      return '/placeholder-bucket-hat.svg';
+    }
+    return product.images[index];
+  };
 
   const nextImage = () => {
     setSelectedImage((prev) => (prev + 1) % product.images.length);
@@ -28,13 +41,22 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
         <AnimatePresence mode="wait">
           <motion.img
             key={selectedImage}
-            src={product.images[selectedImage]}
+            src={getImageSrc(selectedImage)}
             alt={`${product.name} - Image ${selectedImage + 1}`}
             className="w-full h-full object-cover"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 1.05 }}
             transition={{ duration: 0.3 }}
+            onError={() => handleImageError(selectedImage)}
+            onLoad={() => {
+              // Remove from error list if it loads successfully
+              setImageErrors(prev => {
+                const newErrors = { ...prev };
+                delete newErrors[selectedImage];
+                return newErrors;
+              });
+            }}
           />
         </AnimatePresence>
 
@@ -79,9 +101,10 @@ export default function ProductGallery({ product }: ProductGalleryProps) {
             }`}
           >
             <img
-              src={image}
+              src={getImageSrc(index)}
               alt={`${product.name} thumbnail ${index + 1}`}
               className="w-full h-full object-cover"
+              onError={() => handleImageError(index)}
             />
           </button>
         ))}

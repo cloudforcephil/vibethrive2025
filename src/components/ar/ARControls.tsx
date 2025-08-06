@@ -2,6 +2,7 @@
 
 import { RotateCcw, Move, Scale } from 'lucide-react';
 import { useStore } from '@/store';
+import AvatarControls from './AvatarControls';
 
 export default function ARControls() {
   const { fittingRoom, updateHatPosition, updateHatRotation, updateHatScale } = useStore();
@@ -23,9 +24,19 @@ export default function ARControls() {
   };
 
   return (
-    <div className="absolute bottom-4 left-4 bg-black/80 backdrop-blur-sm rounded-lg p-4 text-white">
-      <div className="space-y-4">
-        <div>
+    <div className="absolute bottom-4 left-4 right-4 pointer-events-none">
+      <div className="flex gap-4 pointer-events-auto">
+        {/* Avatar Controls */}
+        <AvatarControls className="w-64" />
+        
+        {/* Hat Controls */}
+        <div className="bg-black/80 backdrop-blur-sm rounded-lg p-4 text-white min-w-[280px]">
+          <h3 className="text-white font-medium mb-3 flex items-center gap-2">
+            <Move className="w-4 h-4" />
+            Hat Controls
+          </h3>
+          <div className="space-y-4">
+            <div>
           <h4 className="text-sm font-medium mb-2 flex items-center gap-2">
             <Move className="w-4 h-4" />
             Position
@@ -91,6 +102,8 @@ export default function ARControls() {
                 />
               </div>
             ))}
+          </div>
+        </div>
           </div>
         </div>
       </div>

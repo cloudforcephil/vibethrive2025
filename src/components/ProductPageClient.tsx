@@ -90,6 +90,10 @@ export default function ProductPageClient({ product }: ProductPageClientProps) {
                     src={product.images[0]}
                     alt={product.name}
                     className="w-full h-full object-cover"
+                    onError={(e) => {
+                      const target = e.target as HTMLImageElement;
+                      target.src = '/placeholder-bucket-hat.svg';
+                    }}
                   />
                 </div>
                 <div className="p-4">

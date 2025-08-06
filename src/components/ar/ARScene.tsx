@@ -6,6 +6,8 @@ import { Suspense } from 'react';
 import { useStore } from '@/store';
 import { motion } from 'framer-motion';
 import Hat3DModel from './Hat3DModel';
+import Avatar3DModel from './Avatar3DModel';
+import VirtualFittingRoom from './VirtualFittingRoom';
 
 export default function ARScene() {
   const { arState, currentProduct } = useStore((state) => state.fittingRoom);
@@ -35,24 +37,44 @@ export default function ARScene() {
   return (
     <div className="relative h-full">
       <Canvas
-        camera={{ position: [0, 1.6, 3], fov: 75 }}
+        camera={{ position: [0, 2, 4], fov: 70 }}
         className="w-full h-full"
       >
         <Suspense fallback={null}>
-          <Environment preset="studio" />
-          <ambientLight intensity={0.5} />
-          <directionalLight position={[10, 10, 5]} intensity={1} />
-          <pointLight position={[-10, -10, -5]} intensity={0.5} />
+          {/* Virtual Fitting Room Environment */}
+          <VirtualFittingRoom />
           
+          {/* Lighting setup for fitting room */}
+          <ambientLight intensity={0.4} />
+          <directionalLight position={[0, 10, 5]} intensity={1.0} color="#ffffff" />
+          <pointLight position={[-5, 5, 5]} intensity={0.8} color="#f0f0f0" />
+          <pointLight position={[5, 5, 5]} intensity={0.8} color="#f0f0f0" />
+          <spotLight 
+            position={[0, 8, 0]} 
+            angle={0.3} 
+            penumbra={0.5} 
+            intensity={0.6}
+            color="#ffffff"
+            target-position={[0, 1.7, 0]}
+          />
+          
+          {/* Avatar Model */}
+          <Avatar3DModel />
+          
+          {/* Hat Model - positioned relative to avatar's head */}
           <Hat3DModel />
           
           <OrbitControls
             enablePan={true}
             enableZoom={true}
             enableRotate={true}
-            minDistance={1}
-            maxDistance={10}
-            target={[0, 1, 0]}
+            minDistance={2}
+            maxDistance={12}
+            target={[0, 1.5, 0]}
+            maxPolarAngle={Math.PI / 1.5}
+            minPolarAngle={Math.PI / 8}
+            enableDamping={true}
+            dampingFactor={0.05}
           />
         </Suspense>
       </Canvas>

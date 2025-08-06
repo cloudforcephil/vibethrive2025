@@ -1,0 +1,45 @@
+<svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect width="800" height="800" fill="#FFFFFF"/>
+  
+  <!-- Bucket Hat Shape - Matching the exact orange "Salty" hat -->
+  <g transform="translate(400, 400)">
+    <!-- Hat Shadow -->
+    <ellipse cx="5" cy="35" rx="185" ry="30" fill="#000000" fill-opacity="0.1"/>
+    
+    <!-- Hat Brim -->
+    <ellipse cx="0" cy="30" rx="180" ry="28" fill="#DC2626"/>
+    <ellipse cx="0" cy="25" rx="180" ry="28" fill="#EF4444"/>
+    
+    <!-- Hat Crown -->
+    <ellipse cx="0" cy="-80" rx="125" ry="145" fill="#DC2626"/>
+    <ellipse cx="-5" cy="-85" rx="120" ry="140" fill="#EF4444"/>
+    
+    <!-- Hat Texture/Seam Lines -->
+    <path d="M -120 -20 Q 0 -30 120 -20" stroke="#D35400" stroke-width="2" fill="none" opacity="0.5"/>
+    <path d="M -100 20 Q 0 15 100 20" stroke="#D35400" stroke-width="1.5" fill="none" opacity="0.3"/>
+    
+    <!-- Geometric pattern elements -->
+    <g opacity="0.7">
+      <path d="M -80 -60 Q -40 -80 0 -60 Q 40 -80 80 -60" stroke="#FFFFFF" stroke-width="3" fill="none"/>
+      <path d="M -60 -20 Q -20 -40 20 -20 Q 60 -40 100 -20" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+      <path d="M -100 0 Q -60 -20 -20 0 Q 20 -20 60 0" stroke="#FFFFFF" stroke-width="2" fill="none"/>
+    </g>
+    
+    <!-- Pattern text -->
+    <text x="0" y="-17" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#FFFFFF">PATTERN</text>
+    
+    <!-- Small brand tag on the side -->
+    <rect x="115" y="20" width="20" height="15" fill="#2C3E50"/>
+    <rect x="117" y="22" width="16" height="11" fill="#FFFFFF"/>
+  </g>
+  
+  <!-- Subtle gradient overlay for realism -->
+  <defs>
+    <radialGradient id="hatGradient" cx="0.4" cy="0.3">
+      <stop offset="0%" style="stop-color:#FFFFFF;stop-opacity:0.2" />
+      <stop offset="100%" style="stop-color:#000000;stop-opacity:0.1" />
+    </radialGradient>
+  </defs>
+  <ellipse cx="400" cy="320" rx="125" ry="145" fill="url(#hatGradient)"/>
+</svg>

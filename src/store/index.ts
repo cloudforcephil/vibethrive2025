@@ -21,8 +21,8 @@ interface StoreActions {
   // AR actions
   activateAR: () => void;
   deactivateAR: () => void;
-  setHatModel: (model: string) => void;
-  setAvatarModel: (model: string) => void;
+  setHatModel: (model: string | null) => void;
+  setAvatarModel: (model: string | null) => void;
   updateHatPosition: (position: { x: number; y: number; z: number }) => void;
   updateHatRotation: (rotation: { x: number; y: number; z: number }) => void;
   updateHatScale: (scale: { x: number; y: number; z: number }) => void;
@@ -181,7 +181,7 @@ export const useStore = create<Store>()(
         });
       },
       
-      setHatModel: (model) => {
+      setHatModel: (model: string | null) => {
         const { fittingRoom } = get();
         set({
           fittingRoom: {
@@ -194,7 +194,7 @@ export const useStore = create<Store>()(
         });
       },
       
-      setAvatarModel: (model) => {
+      setAvatarModel: (model: string | null) => {
         const { fittingRoom } = get();
         set({
           fittingRoom: {
